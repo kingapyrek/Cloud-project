@@ -1,0 +1,19 @@
+body
+{
+
+  background-image: url('cool-background.png') ;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  font-family: 'Lato', sans-serif;
+  background-attachment: fixed;
+}
+a
+{
+    color: black;
+}
+#content
+{
+    background-color: rgba(255, 255, 255, 0.9);
+   /* max-height: 500px;*/
+    border-radius: 10px;
+}

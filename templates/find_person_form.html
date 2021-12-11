@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h4 class="display-4">Find person</h4>
+<div class="col-md-4 mx-auto">  
+    <form action="/find/person" method="POST" enctype="multipart/form-data" style="margin-top:30px;">
+        <div class="form-group center-block">
+            <div class="form-group offset-2 col-md-8" style="padding:15px;">
+                <label for="name">Name </label>
+                <input name="name" list="brow">
+                <datalist id="brow">
+                {% for row in all %}
+                <option value="{{row.name}}"> {{row.name}} </option>
+                {% endfor %}
+            </datalist>  
+            </div>
+    
+        <button type="submit" name="submit" class="btn btn-large btn-dark" value="find_person" style="margin-top:15px;">
+            Find
+        </button>
+        </div>
+    </form>
+</div>
+
+{% endblock content %}

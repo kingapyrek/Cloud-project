@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<caption style="border: inherit; background-color: lightgrey;">
+    <span class="align-left"><strong>All people</strong></span>
+    </caption>
+    
+<table class="table table-striped custab">
+    <thead>
+            <tr>
+                <th>Name</th>
+                <th>Date of birth</th>
+                <th>Date of death</th>
+            </tr>
+    </thead>
+    {% for person in people %}
+    <tr>
+    
+        <td> {{ person["p"].name }}</td>
+        <td> {{ person["p"].birth }}</td>
+        <td> {{ person["p"].died }}</td>
+    </tr>
+    {% endfor %}
+    </table>
+
+
+{% endblock content %}

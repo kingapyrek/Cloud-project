@@ -1,0 +1,253 @@
+{% extends "base.html" %}
+{% block content %}
+{% if person %}
+<caption style="border: inherit; background-color: lightgrey;">
+    <span class="align-left"><strong>Person</strong></span>
+    </caption>
+    
+<table class="table table-striped custab">
+    <thead>
+            <tr>
+                <th>name</th>
+                <th>date of birth</th>
+                <th>date of death</th>
+            </tr>
+    </thead><tr>
+    
+        <td> {{ person[0]["p"].name }}</td>
+        <td> {{ person[0]["p"].birth }}</td>
+        <td> {{ person[0]["p"].died }}</td>
+
+    </tr>
+    </table>
+    {% else %}
+    <h3>Nie znaleziono podanej osoby w bazie!</h3>
+    {% endif %}
+
+    {% if father or mother %}
+<caption style="border: inherit; background-color: lightgrey;">
+    <span class="align-left"><strong>Parents</strong></span>
+    </caption>
+<table class="table table-striped custab">
+    <thead>
+            <tr>
+                <th>name</th>
+                <th>date of birth</th>
+                <th>date of death</th>
+                <th>relationship</th>
+            </tr>
+
+    </thead> {% if mother%}
+    <tr>
+       
+        <td>{{ mother[0]["m"].name}} </td>
+        <td>{{ mother[0]["m"].birth }}</td>
+        <td>{{ mother[0]["m"].died }}</td>
+        <td> Mother </td>
+        
+
+    </tr>
+    {% endif %}
+    {% if father %}
+    <tr>
+    
+        <td> {{ father[0]["f"].name }}</td>
+        <td> {{ father[0]["f"].birth }}</td>
+        <td> {{ father[0]["f"].died }}</td>
+        <td>Father</td>
+
+    </tr>
+    {% endif %}
+    </table>
+    {% endif %}
+
+
+    {% if siblings %}
+    <caption style="border: inherit; background-color: lightgrey;">
+        <span class="align-left"><strong>Siblings</strong></span>
+        </caption>
+    <table class="table table-striped custab">
+        <thead>
+                <tr>
+                    <th>name</th>
+                    <th>date of birth</th>
+                    <th>date of death</th>
+                    <th>relationship</th>
+                </tr>
+    
+        </thead>
+        {% for sib in siblings%}
+        <tr>
+    
+            <td> {{ sib['sib'].name }}</td>
+            <td> {{ sib['sib'].birth }}</td>
+            <td> {{ sib['sib'].died }}</td>
+            <td>Sibling</td>
+    
+        </tr>
+        {% endfor %}
+        </table>
+        {% endif %}
+
+    {% if married or divorced %}
+    <caption style="border: inherit; background-color: lightgrey;">
+        <span class="align-left"><strong>Relationships</strong></span>
+        </caption>
+    <table class="table table-striped custab">
+        <thead>
+                <tr>
+                    <th>name</th>
+                    <th>date of birth</th>
+                    <th>date of death</th>
+                    <th>relationship</th>
+                    <th>since</th>
+                    <th>to (divorce)</th>
+                </tr>
+    
+        </thead>
+        {% for m in married%}
+        <tr>
+    
+            <td> {{ m['s'].name }}</td>
+            <td> {{ m['s'].birth }}</td>
+            <td> {{ m['s'].died }}</td>
+            <td>{{ m['type(r)']}}</td>
+            <td>{{ m['r.since']}}</td>
+    
+        </tr>
+        {% endfor %}
+
+        {% for d in divorced%}
+        <tr>
+    
+            <td> {{ d['s'].name }}</td>
+            <td> {{ d['s'].birth }}</td>
+            <td> {{ d['s'].died }}</td>
+            <td>{{ d['type(r)']}}</td>
+            <td>{{ d['r.married']}}</td>
+            <td>{{ d['r.divorced']}}</td>
+    
+        </tr>
+        {% endfor %}
+        </table>
+        {% endif %}
+
+
+        {% if grandparents %}
+        <caption style="border: inherit; background-color: lightgrey;">
+            <span class="align-left"><strong>Grandparents</strong></span>
+            </caption>
+        <table class="table table-striped custab">
+            <thead>
+                    <tr>
+                        <th>name</th>
+                        <th>date of birth</th>
+                        <th>date of death</th>
+                        <th>relationship</th>
+                    </tr>
+        
+            </thead>
+            {% for g in grandparents%}
+            <tr>
+        
+                <td> {{ g['g'].name }}</td>
+                <td> {{ g['g'].birth }}</td>
+                <td> {{ g['g'].died }}</td>
+                {% if g['g'].gender == 'f' %}
+                <td>Grandmother</td>
+                {% else %}
+                <td>Grandfather</td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+            </table>
+            {% endif %}
+
+            {% if cousins %}
+        <caption style="border: inherit; background-color: lightgrey;">
+            <span class="align-left"><strong>Cousins</strong></span>
+            </caption>
+        <table class="table table-striped custab">
+            <thead>
+                    <tr>
+                        <th>name</th>
+                        <th>date of birth</th>
+                        <th>date of death</th>
+                        <th>relationship</th>
+                    </tr>
+        
+            </thead>
+            {% for c in cousins%}
+            <tr>
+        
+                <td> {{ c['cousin'].name }}</td>
+                <td> {{ c['cousin'].birth }}</td>
+                <td> {{ c['cousin'].died }}</td>
+                <td>Cousin</td>
+        
+            </tr>
+            {% endfor %}
+            </table>
+            {% endif %}
+
+
+            {% if children %}
+            <caption style="border: inherit; background-color: lightgrey;">
+                <span class="align-left"><strong>Children</strong></span>
+                </caption>
+            <table class="table table-striped custab">
+                <thead>
+                        <tr>
+                            <th>name</th>
+                            <th>date of birth</th>
+                            <th>date of death</th>
+                            <th>relationship</th>
+                        </tr>
+            
+                </thead>
+                {% for c in children%}
+                <tr>
+            
+                    <td> {{ c['c'].name }}</td>
+                    <td> {{ c['c'].birth }}</td>
+                    <td> {{ c['c'].died }}</td>
+                    {% if c['c'].gender == 'f' %}
+                    <td>Dauther</td>
+                    {% else %}
+                    <td>Son</td>  
+                    {% endif %}
+            
+                </tr>
+                {% endfor %}
+                </table>
+                {% endif %}
+
+                {% if grandchildren %}
+                <caption style="border: inherit; background-color: lightgrey;">
+                    <span class="align-left"><strong>Grandchildren</strong></span>
+                    </caption>
+                <table class="table table-striped custab">
+                    <thead>
+                            <tr>
+                                <th>name</th>
+                                <th>date of birth</th>
+                                <th>date of death</th>
+                                <th>relationship</th>
+                            </tr>
+                
+                    </thead>
+                    {% for g in grandchildren%}
+                    <tr>
+                
+                        <td> {{ g['g'].name }}</td>
+                        <td> {{ g['g'].birth }}</td>
+                        <td> {{ g['g'].died }}</td>
+                        <td>Grandchild</td>
+                
+                    </tr>
+                    {% endfor %}
+                    </table>
+                    {% endif %}
+
+
+{% endblock content %}

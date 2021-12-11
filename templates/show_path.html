@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+{% if path %}
+<h3>The shortest path</h3>
+{{ path }}
+{% else %}
+<h3>Path not found, make sure people you chose exist in database</h3>
+{% endif %}
+
+
+
+
+
+
+
+
+{% endblock content %}
